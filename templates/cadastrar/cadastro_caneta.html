@@ -1,0 +1,56 @@
+{% extends 'home.html' %}
+{% load static %}
+
+{% block title %}
+    Cadastro
+{% endblock %}
+
+
+{% block content%}
+
+{% include 'partials/_menu.html' %}
+
+{% if user.is_authenticated %}
+    
+    <section>
+        <div class="container">
+            <div class="container-item-titulo">
+                <h2>Cadastro Caneta</h2>
+            </div>
+
+            <div class="container-item-form">
+                <form action="{% url 'cadastro_caneta' %}" method="POST"> {% csrf_token %}
+                    {% if messages %}
+                        {% for message in messages %}
+                            <div class="item-mensagem error">
+                                <p>{{ message }}</p>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+
+                    <div class="container-space-around">
+                        <div class="item">        
+                            <label for="modelo" name="modelo"><b>Modelo</b></label>
+                            {{ caneta_form.modelo }}   
+                        </div>
+                        <div class="item">        
+                            <label for="cor" name="cor"><b>Cor</b></label>
+                            {{ caneta_form.cor }}   
+                        </div>
+                        <div class="item">        
+                            <label for="ponta" name="ponta"><b>Ponta</b></label>
+                            {{ caneta_form.ponta }}   
+                        </div>
+                    </div>
+
+                    <div class="confirmar">
+                        <div class="item">
+                            <button type="submit" class="btn btn-success">Confirmar Cadastro</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>        
+    </section>
+{%endif %}
+{% endblock %}

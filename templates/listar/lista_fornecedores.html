@@ -1,0 +1,108 @@
+{% extends 'home.html' %}
+{% load static %}
+
+{% block title %}
+    Listagem
+{% endblock %}
+
+
+{% block content%}
+
+{% include 'partials/_menu.html' %}
+
+{% if user.is_authenticated %}
+<section>
+    <div class="container"> 
+
+        <div class="row">
+            <div class="col-12">
+                <div class="section-heading" style="margin-top: 15px;">
+                    <h3>Listagem de Fornecedores</h3>
+                </div>
+            </div>
+        </div>
+        <div class="container-item-form">
+            {% if lista_fornecedores %}
+                {% for fornecedor in lista_fornecedores %}
+                    <div class="container" style="border-radius: 4px; border: solid 1.5px; border-color: #dee2e6; margin-bottom: 20px;">
+                        <div class="container-space-around"> 
+                            <div class="item">
+                                <label for="nome_fornecedor" name="nome_fornecedor"><b>Nome</b></label>
+                                <input for="nome_fornecedor" name="nome_fornecedor" value="{{ fornecedor.nome_fornecedor }}" readonly="True">    
+                            </div>
+
+                            <div class="item">
+                                <label for="cnpj" name="cnpj"><b>CNPJ</b></label>
+                                <input for="cnpj" name="cnpj" value="{{ fornecedor.cnpj }}" readonly="True">  
+                            </div>
+                        </div>
+
+                        <div class="container-space-around">
+                            <div class="item">     
+                                <label for="celular" name="celular"><b>Celular</b></label>
+                                <input for="celular" name="celular" value="{{ fornecedor.celular }}" readonly="True">  
+                            </div>
+                            <div class="item">        
+                                <label for="residencial" name="residencial"><b>Residencial</b></label>
+                                <input for="residencial" name="residencial" value="{{ fornecedor.residencial }}" readonly="True"> 
+                            </div>
+                            <div class="item">      
+                                <label for="comercial" name="comercial"><b>Comercial</b></label>
+                                <input for="comercial" name="comercial" value="{{ fornecedor.comercial }}" readonly="True">  
+                            </div>
+                        </div>
+
+                        <div class="container-space-around">
+                            <div class="item">        
+                                <label for="rua" name="rua"><b>Rua</b></label>
+                                <input for="rua" name="rua" value="{{ fornecedor.rua }}" readonly="True"> 
+                            </div>
+                            
+                            <div class="item">        
+                                <label for="bairro" name="bairro"><b>Bairro</b></label>
+                                <input for="bairro" name="bairro" value="{{ fornecedor.bairro }}" readonly="True"> 
+                            </div>
+                            
+                            <div class="item">        
+                                <label for="cidade" name="cidade"><b>Cidade</b></label>
+                                <input for="cidade" name="cidade" value="{{ fornecedor.cidade }}" readonly="True">
+                            </div>
+                        </div>
+
+                        <div class="container-space-around">
+                            <div class="item">        
+                                <label for="cep" name="cep"><b>CEP</b></label>
+                                <input for="cep" name="cep" value="{{ fornecedor.cep }}" readonly="True">
+                            </div>
+                            
+                            <div class="item">        
+                                <label for="numero" name="numero"><b>Número</b></label>
+                                <input for="numero" name="numero" value="{{ fornecedor.numero }}" readonly="True"> 
+                            </div>
+                            
+                            <div class="item">        
+                                <label for="complemento" name="complemento"><b>Complemento</b></label>
+                                <input for="complemento" name="complemento" value="{{ fornecedor.complemento }}" readonly="True">  
+                            </div>
+                        </div>  
+
+                        <div class="container-item-form" style="margin-bottom: 10px; margin-left: 5px;">
+                            <a href="{% url 'exclui_fornecedor' fornecedor.id %}">
+                                <button class="btn btn-danger" type="submit">Excluir</button>  
+                            </a>             
+                            <a href="{% url 'edita_fornecedor' fornecedor.id %}">
+                                <button class="btn btn-warning" type="submit">Editar</button>
+                            </a>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <div class="col-12 col-sm-6 col-lg-4"></div>
+                    <p>Nenhum fornecedor cadastrado ainda.</p>
+                </div>
+            {% endif %}    
+        </div>
+    </div>        
+</section>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,64 @@
+{% extends 'home.html' %}
+{% load static %}
+
+{% block title %}
+    Listagem
+{% endblock %}
+
+
+{% block content%}
+
+{% include 'partials/_menu.html' %}
+
+{% if user.is_authenticated %}
+<section>
+    <div class="container"> 
+
+        <div class="row">
+            <div class="col-12">
+                <div class="section-heading" style="margin-top: 15px;">
+                    <h3>Listagem de Canetas</h3>
+                </div>
+            </div>
+        </div>
+        <div class="container-item-form">
+            {% if lista_canetas %}
+                {% for caneta in lista_canetas %}
+                    <div class="container" style="border-radius: 4px; border: solid 1.5px; border-color: #dee2e6; margin-bottom: 20px;">
+                        <div class="container-space-around"> 
+                            <div class="item">
+                                <label for="modelo" name="modelo"><b>Modelo</b></label>
+                                <input for="modelo" name="modelo" value="{{ caneta.modelo }}" readonly="True">   
+                            </div>
+                            
+                            <div class="item">
+                                <label for="cor" name="cor"><b>Cor</b></label>
+                                <input for="cor" name="cor" value="{{ caneta.cor }}" readonly="True">  
+                            </div>
+
+                            <div class="item">     
+                                <label for="ponta" name="ponta"><b>Ponta</b></label>
+                                <input for="ponta" name="ponta" value="{{ caneta.ponta }}" readonly="True">
+                            </div>
+                        </div>
+                        
+                        <div class="container-item-form" style="margin-bottom: 10px; margin-left: 5px;">
+                            <a href="{% url 'exclui_caneta' caneta.id %}">
+                                <button class="btn btn-danger" type="submit">Excluir</button>               
+                            </a>
+                            <a href="{% url 'edita_caneta' caneta.id %}">
+                                <button class="btn btn-warning" type="submit">Editar</button>
+                            </a>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <div class="col-12 col-sm-6 col-lg-4"></div>
+                    <p>Nenhuma caneta cadastrada ainda.</p>
+                </div>
+            {% endif %}    
+        </div>
+    </div>        
+</section>
+{% endif %}
+{% endblock %}

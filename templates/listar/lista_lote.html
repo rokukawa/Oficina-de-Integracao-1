@@ -1,0 +1,74 @@
+{% extends 'home.html' %}
+{% load static %}
+
+{% block title %}
+    Listagem
+{% endblock %}
+
+
+{% block content%}
+
+{% include 'partials/_menu.html' %}
+
+{% if user.is_authenticated %}
+<section>
+    <div class="container">
+        
+        <div class="row">
+            <div class="col-12">
+                <div class="section-heading" style="margin-top: 15px;">
+                    <h3>Listagem de Lote</h3>
+                </div>
+            </div>
+        </div>
+        <div class="container-item-form">
+            {% if lista_lote %}
+                {% for lote in lista_lote %}
+                    <div class="container" style="border-radius: 4px; border: solid 1.5px; border-color: #dee2e6; margin-bottom: 20px;">
+                        <div class="container-space-around"> 
+                            <div class="item">
+                                <label for="codigo_maquina" name="codigo_maquina"><b>Código Máquina</b></label>
+                                <input for="codigo_maquina" name="codigo_maquina" value="{{ lote.codigo_maquina }}" readonly="True">    
+                            </div>
+
+                            <div class="item">
+                                <label for="data_fabricação" name="data_fabricação"><b>Data de Fabricação</b></label>
+                                <input for="data_fabricação" name="data_fabricação" value="{{ lote.data_fabricação }}" readonly="True">   
+                            </div>
+                        </div>
+
+                        <div class="container-space-around">
+                            <div class="item">     
+                                <label for="quantidade" name="quantidade"><b>Quantidade</b></label>
+                                <input for="quantidade" name="quantidade" value="{{ lote.quantidade }}" readonly="True">  
+                            </div>
+                            <div class="item">        
+                                <label for="caneta" name="caneta"><b>Caneta</b></label>
+                                <input for="caneta" name="caneta" value="{{ lote.caneta }}" readonly="True"> 
+                            </div>
+                            <div class="item">      
+                                <label for="fornecedor" name="fornecedor"><b>Fornecedor</b></label>
+                                <input for="fornecedor" name="fornecedor" value="{{ lote.fornecedor }}" readonly="True">
+                            </div>
+                        </div>
+                        
+                        <div class="container-item-form" style="margin-bottom: 10px; margin-left: 5px;">
+                            <a href="{% url 'exclui_lote' lote.id %}">
+                                <button class="btn btn-danger" type="submit">Excluir</button>   
+                            </a>            
+                            <a href="{% url 'edita_lote' lote.id %}">
+                                <button class="btn btn-warning" type="submit">Editar</button>
+                            </a>
+                        </div>
+                    </div>  
+                {% endfor %}
+            {% else %}
+                <div class="col-12 col-sm-6 col-lg-4"></div>
+                    <p>Nenhum lote cadastrado ainda.</p>
+                </div>
+            {% endif %}  
+        </div>
+    </div>        
+</section>
+{% endif %}
+{% endblock %}

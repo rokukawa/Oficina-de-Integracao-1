@@ -1,0 +1,65 @@
+{% extends 'home.html' %}
+{% load static %}
+
+{% block title %}
+    Cadastro
+{% endblock %}
+
+
+{% block content%}
+    
+{% include 'partials/_menu.html' %}
+
+    <section>
+        <div class="container">
+            <div class="container-item-titulo">
+                <h2>Cadastro Usuário</h2>
+            </div>
+
+            <div class="container-item-form">
+                <form action="{% url 'cadastro_usuario' %}" method="POST"> {% csrf_token %}
+                    {% if messages %}
+                        {% for message in messages %}
+                            <div class="item-mensagem error">
+                                <p>{{ message }}</p>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                    
+                    <div class="item">
+                        <label for="username" name="username"><b>Nome</b></label>
+                        {{ usuario_form.username }}      
+                    </div>
+
+                    <div class="item">
+                        <label for="email" name="email"><b>Email</b></label>
+                        {{ usuario_form.email }}    
+                    </div>
+
+                    <div class="item">                        
+                        <label for="senha" name="password"><b>Senha</b></label>
+                        {{ usuario_form.password }}  
+                    </div>
+
+                    <div class="container-space-around">
+                        <div class="item">        
+                            <label for="telefone_residencial" name="telefone_residencial"><b>Telefone Residencial</b></label>
+                            {{ usuario_form.telefone_residencial }} 
+                        </div>
+                        
+                        <div class="item">        
+                            <label for="telefone_celular" name="telefone_celular"><b>Telefone Celular</b></label>
+                            {{ usuario_form.telefone_celular }}   
+                        </div>
+                    </div>
+
+                    <div class="confirmar">
+                        <div class="item">
+                            <button type="submit" class="btn btn-success">Confirmar Cadastro</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>        
+    </section>
+{% endblock %}
