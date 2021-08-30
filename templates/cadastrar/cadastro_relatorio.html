@@ -22,7 +22,7 @@
                 <form action="{% url 'relatorio' %}" method="POST"> {% csrf_token %}
                     {% if messages %}
                         {% for message in messages %}
-                            <div class="item-mensagem error">
+                            <div class="item-mensagem success">
                                 <p>{{ message }}</p>
                             </div>
                         {% endfor %}
@@ -49,7 +49,7 @@
                     <div class="confirmar">
                         <div class="item">
                             <button type="submit" class="btn btn-success">Confirmar Relatório</button>
-                            <button type="button" class="btn btn-primary" onclick="exibirCriarFornecedor()">Ainda não tem fornecedor? Clique aqui</button>
+                            <button type="button" class="btn btn-primary" onclick="exibirCriarLote()">Ainda não tem lote? Clique aqui</button>
                         </div>
                     </div>
                 </form>
@@ -58,9 +58,9 @@
     </section>
 
     <script>
-        function exibirCriarFornecedor()
+        function exibirCriarLote()
         {
-             location.href = "{% url 'cadastro_fornecedor' %}";
+             location.href = "{% url 'cadastro_lote' %}";
         } 
     </script>
 {%endif %}

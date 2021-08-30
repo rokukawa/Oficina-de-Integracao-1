@@ -22,7 +22,7 @@
                 <form action="{% url 'cadastro_lote' %}" method="POST"> {% csrf_token %}
                     {% if messages %}
                         {% for message in messages %}
-                            <div class="item-mensagem error">
+                            <div class="item-mensagem success">
                                 <p>{{ message }}</p>
                             </div>
                         {% endfor %}
