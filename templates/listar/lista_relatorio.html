@@ -42,6 +42,33 @@
                                 <input for="codigo" name="codigo" value="{{ relatorio.codigo }}" readonly="True">
                             </div>
                         </div>
+
+                        <div class="container-space-around"> 
+                            <div class="item">
+                                <label for="codigo_maquina" name="codigo_maquina"><b>Código Máquina</b></label>
+                                <input for="codigo_maquina" name="codigo_maquina" value="{{ relatorio.lote.codigo_maquina }}" readonly="True">    
+                            </div>
+
+                            <div class="item">
+                                <label for="data_fabricação" name="data_fabricação"><b>Data de Fabricação</b></label>
+                                <input for="data_fabricação" name="data_fabricação" value="{{ relatorio.lote.data_fabricação }}" readonly="True">   
+                            </div>
+                        </div>
+
+                        <div class="container-space-around">
+                            <div class="item">     
+                                <label for="quantidade" name="quantidade"><b>Quantidade de Canetas no Lote</b></label>
+                                <input for="quantidade" name="quantidade" value="{{ relatorio.lote.quantidade }}" readonly="True">  
+                            </div>
+                            <div class="item">        
+                                <label for="caneta" name="caneta"><b>Caneta</b></label>
+                                <input for="caneta" name="caneta" value="{{ relatorio.lote.caneta }}" readonly="True"> 
+                            </div>
+                            <div class="item">      
+                                <label for="fornecedor" name="fornecedor"><b>Fornecedor</b></label>
+                                <input for="fornecedor" name="fornecedor" value="{{ relatorio.lote.fornecedor }}" readonly="True">
+                            </div>
+                        </div>
                         
                         <div class="container-item-form" style="margin-bottom: 10px; margin-left: 5px;">
                             <a href="{% url 'exclui_relatorio' relatorio.id %}">

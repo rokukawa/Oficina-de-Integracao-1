@@ -27,3 +27,5 @@ class Relatorio(models.Model):
     lote = models.ForeignKey(Lote, on_delete=CASCADE)
     quantidade_falhas = models.IntegerField(null=False)
     codigo = models.CharField(max_length=45)
+
+    
