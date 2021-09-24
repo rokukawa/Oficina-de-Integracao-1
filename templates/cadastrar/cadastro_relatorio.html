@@ -20,13 +20,13 @@
 
             <div class="container-item-form">
                 <form action="{% url 'relatorio' %}" method="POST"> {% csrf_token %}
-                    {% if messages %}
-                        {% for message in messages %}
-                            <div class="item-mensagem success">
-                                <p>{{ message }}</p>
-                            </div>
+                    {% for field in relatorio_form.visible_fields %}
+                        {% for error in field.errors %}
+                            <section class="item-mensagem error" role="alert">
+                                {{ field.errors }}
+                            </section>
                         {% endfor %}
-                    {% endif %}
+                    {% endfor %}
 
                     <div class="container-space-around">
                         <div class="item">        

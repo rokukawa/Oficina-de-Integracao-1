@@ -2,6 +2,7 @@ from django import forms
 from django.db.models import fields
 from django.forms import widgets
 from usuario.models import *
+from oficina1.validation import *
 
 class FornecedorForms(forms.ModelForm):
     class Meta:
@@ -20,3 +21,44 @@ class FornecedorForms(forms.ModelForm):
             'bairro': forms.TextInput(attrs={'class': 'item', 'max_length':100, 'placeholder':'Informe o nome do bairro'}),
             'complemento': forms.TextInput(attrs={'class': 'item', 'max_length':100, 'placeholder':'Informe o complemento'}),
         }
+
+    def clean(self):
+        lista_de_erros = {}
+        nome_fornecedor = self.cleaned_data.get('nome_fornecedor')
+        cnpj = self.cleaned_data.get('cnpj')
+        celular = self.cleaned_data.get('celular')
+        comercial = self.cleaned_data.get('comercial')
+        residencial = self.cleaned_data.get('residencial')
+        rua = self.cleaned_data.get('rua')
+        numero = self.cleaned_data.get('numero')
+        cidade = self.cleaned_data.get('cidade')
+        cep = self.cleaned_data.get('cep')
+        bairro = self.cleaned_data.get('bairro')
+        complemento = self.cleaned_data.get('complemento')
+
+        campo_contem_numero(nome_fornecedor, 'nome_fornecedor', lista_de_erros)
+        campo_contem_numero(rua, 'rua', lista_de_erros)
+        campo_contem_numero(cidade, 'cidade', lista_de_erros)
+        campo_contem_numero(bairro, 'bairro', lista_de_erros)
+
+        campo_contem_letra(cnpj, 'cnpj', lista_de_erros)
+        campo_contem_letra(celular, 'celular', lista_de_erros)
+        campo_contem_letra(comercial, 'comercial', lista_de_erros)
+        campo_contem_letra(residencial, 'residencial', lista_de_erros)
+        campo_contem_letra(cep, 'cep', lista_de_erros)
+        campo_contem_letra(numero, 'numero', lista_de_erros)
+
+        campo_contem_simbolos(nome_fornecedor, 'nome_fornecedor', lista_de_erros)
+        campo_contem_simbolos(rua, 'rua', lista_de_erros)
+        campo_contem_simbolos(cidade, 'cidade', lista_de_erros)
+        campo_contem_simbolos(bairro, 'bairro', lista_de_erros)
+        campo_contem_simbolos(complemento, 'complemento', lista_de_erros)
+
+
+        if lista_de_erros is not None:
+            for erro in lista_de_erros:
+                mensagem_erro = lista_de_erros[erro]
+                self.add_error(erro, mensagem_erro)
+
+        return self.cleaned_data
+        

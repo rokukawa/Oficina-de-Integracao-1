@@ -13,10 +13,9 @@ def cadastro_fornecedor(request):
     if request.method == 'POST':
         if fornecedor_form.is_valid():
             fornecedor_form.save()
-            return redirect('lista_fornecedores')
-
-        messages.success(request, 'Cadastro realizado com sucesso.')
-        
+            return redirect('lista_fornecedores')  
+        else:
+            return render(request, 'cadastrar/cadastro_fornecedor.html', contexto)
     else:
         return render(request, 'cadastrar/cadastro_fornecedor.html', contexto)
 

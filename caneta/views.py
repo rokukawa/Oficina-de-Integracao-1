@@ -12,8 +12,9 @@ def cadastro_caneta(request):
     if request.method == 'POST':
         if caneta_form.is_valid():
             caneta_form.save()
-            messages.success(request, 'Cadastro realizado com sucesso.')
-            return redirect('lista_canetas')        
+            return redirect('lista_canetas')  
+        else:  
+            return render(request, 'cadastrar/cadastro_caneta.html', contexto) 
     else:
         return render(request, 'cadastrar/cadastro_caneta.html', contexto)
 
@@ -25,8 +26,9 @@ def cadastro_lote(request):
     if request.method == 'POST':
         if lote_form.is_valid():
             lote_form.save()
-            messages.success(request, 'Cadastro realizado com sucesso.')
             return redirect('lista_lote')
+        else:
+            return render(request, 'cadastrar/cadastro_lote.html', contexto)
     else:
         return render(request, 'cadastrar/cadastro_lote.html', contexto)
 
@@ -50,8 +52,9 @@ def gerar_relatorio(request):
     if request.method == 'POST':
         if relatorio_form.is_valid():
             relatorio_form.save()
-            messages.success(request, 'Cadastro realizado com sucesso.')
             return redirect('lista_relatorio')
+        else:
+            return render(request, 'cadastrar/cadastro_relatorio.html', contexto)
     else:
         return render(request, 'cadastrar/cadastro_relatorio.html', contexto)
 

@@ -20,13 +20,13 @@
 
             <div class="container-item-form">
                 <form action="{% url 'cadastro_lote' %}" method="POST"> {% csrf_token %}
-                    {% if messages %}
-                        {% for message in messages %}
-                            <div class="item-mensagem success">
-                                <p>{{ message }}</p>
-                            </div>
+                    {% for field in lote_form.visible_fields %}
+                        {% for error in field.errors %}
+                            <section class="item-mensagem error" role="alert">
+                                {{ field.errors }}
+                            </section>
                         {% endfor %}
-                    {% endif %}
+                    {% endfor %}
 
                     <div class="item">
                         <label for="codigo_maquina" name="codigo_maquina"><b>Código Máquina</b></label>

@@ -20,16 +20,16 @@
 
             <div class="container-item-form">
                 <form action="{% url 'cadastro_fornecedor' %}" method="POST"> {% csrf_token %}
-                    {% if messages %}
-                        {% for message in messages %}
-                            <div class="item-mensagem success">
-                                <p>{{ message }}</p>
-                            </div>
+                    {% for field in fornecedor_form.visible_fields %}
+                        {% for error in field.errors %}
+                            <section class="item-mensagem error" role="alert">
+                                {{ field.errors }}
+                            </section>
                         {% endfor %}
-                    {% endif %}
+                    {% endfor %}
 
                     <div class="item">
-                        <label for="nome_fornecedor" name="nome_fornecedor"><b>Nome</b></label>
+                        <label for="nome_fornecedor" name="nome_fornecedor"><b>Nome Fornecedor</b></label>
                         {{ fornecedor_form.nome_fornecedor }}      
                     </div>
 

@@ -49,12 +49,11 @@ def cadastro_usuario(request):
 
         if Usuario.objects.filter(email=email).exists():
             messages.error(request, 'O campo e-mail já existe.')
-            return render(request, 'cadastro_usuario.html', contexto)
+            return render(request, 'cadastrar/cadastro_usuario.html', contexto)
 
         usuario = Usuario.objects.create_user(email=email, username=username, password=password, telefone_celular=telefone_celular, telefone_residencial=telefone_residencial)
         usuario.save()
 
-        messages.success(request, 'Cadastro realizado com sucesso.')
         return redirect('login')
     else:
         return render(request, 'cadastrar/cadastro_usuario.html', contexto)
