@@ -34,13 +34,27 @@ def cadastro_lote(request):
 
 
 def lista_canetas(request):
-    lista_canetas = Caneta.objects.all()
+    canetas = Caneta.objects.all()
+
+    paginator = Paginator(canetas, 4)
+
+    page = request.GET.get('page')
+
+    lista_canetas = paginator.get_page(page)
+
     contexto = {'lista_canetas': lista_canetas}
     return render(request, 'listar/lista_canetas.html', contexto)
 
 
 def lista_lote(request):
-    lista_lote = Lote.objects.all()
+    lote = Lote.objects.all()
+
+    paginator = Paginator(lote, 3)
+
+    page = request.GET.get('page')
+
+    lista_lote = paginator.get_page(page)
+    
     contexto = {'lista_lote': lista_lote}
     return render(request, 'listar/lista_lote.html', contexto)
 
@@ -60,8 +74,15 @@ def gerar_relatorio(request):
 
 
 def listar_relatorio(request):
-    lista_relatorio = Relatorio.objects.all()
-    contexto = {'lista_relatorio': lista_relatorio}
+    relatorios = Relatorio.objects.all()
+
+    paginator = Paginator(relatorios, 2)
+
+    page = request.GET.get('page')
+
+    lista_relatorios = paginator.get_page(page)
+
+    contexto = {'lista_relatorios': lista_relatorios}
     return render(request, 'listar/lista_relatorio.html', contexto)
 
     

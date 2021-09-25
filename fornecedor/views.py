@@ -1,8 +1,9 @@
 import fornecedor
-from django.contrib import auth, messages
+from django.core import paginator
 from django.shortcuts import render, redirect
 from fornecedor.forms import *
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import render, redirect
+from django.core.paginator import Paginator
 
 # Create your views here.
 
@@ -21,7 +22,14 @@ def cadastro_fornecedor(request):
 
 
 def lista_fornecedores(request):
-    lista_fornecedores = Fornecedor.objects.all()
+    fornecedores = Fornecedor.objects.all()
+
+    paginator = Paginator(fornecedores, 2)
+
+    page = request.GET.get('page')
+
+    lista_fornecedores = paginator.get_page(page)
+
     contexto = {'lista_fornecedores': lista_fornecedores}
     return render(request, 'listar/lista_fornecedores.html', contexto)
 

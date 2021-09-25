@@ -23,74 +23,74 @@
         </div>
         <div class="container-item-form">
             {% if lista_fornecedores %}
-                {% for fornecedor in lista_fornecedores %}
+                {% for lista_fornecedor in lista_fornecedores %}
                     <div class="container" style="border-radius: 4px; border: solid 1.5px; border-color: #dee2e6; margin-bottom: 20px;">
                         <div class="container-space-around"> 
                             <div class="item">
                                 <label for="nome_fornecedor" name="nome_fornecedor"><b>Nome</b></label>
-                                <input for="nome_fornecedor" name="nome_fornecedor" value="{{ fornecedor.nome_fornecedor }}" readonly="True">    
+                                <input for="nome_fornecedor" name="nome_fornecedor" value="{{ lista_fornecedor.nome_fornecedor }}" readonly="True">    
                             </div>
 
                             <div class="item">
                                 <label for="cnpj" name="cnpj"><b>CNPJ</b></label>
-                                <input for="cnpj" name="cnpj" value="{{ fornecedor.cnpj }}" readonly="True">  
+                                <input for="cnpj" name="cnpj" value="{{ lista_fornecedor.cnpj }}" readonly="True">  
                             </div>
                         </div>
 
                         <div class="container-space-around">
                             <div class="item">     
                                 <label for="celular" name="celular"><b>Celular</b></label>
-                                <input for="celular" name="celular" value="{{ fornecedor.celular }}" readonly="True">  
+                                <input for="celular" name="celular" value="{{ lista_fornecedor.celular }}" readonly="True">  
                             </div>
                             <div class="item">        
                                 <label for="residencial" name="residencial"><b>Residencial</b></label>
-                                <input for="residencial" name="residencial" value="{{ fornecedor.residencial }}" readonly="True"> 
+                                <input for="residencial" name="residencial" value="{{ lista_fornecedor.residencial }}" readonly="True"> 
                             </div>
                             <div class="item">      
                                 <label for="comercial" name="comercial"><b>Comercial</b></label>
-                                <input for="comercial" name="comercial" value="{{ fornecedor.comercial }}" readonly="True">  
+                                <input for="comercial" name="comercial" value="{{ lista_fornecedor.comercial }}" readonly="True">  
                             </div>
                         </div>
 
                         <div class="container-space-around">
                             <div class="item">        
                                 <label for="rua" name="rua"><b>Rua</b></label>
-                                <input for="rua" name="rua" value="{{ fornecedor.rua }}" readonly="True"> 
+                                <input for="rua" name="rua" value="{{ lista_fornecedor.rua }}" readonly="True"> 
                             </div>
                             
                             <div class="item">        
                                 <label for="bairro" name="bairro"><b>Bairro</b></label>
-                                <input for="bairro" name="bairro" value="{{ fornecedor.bairro }}" readonly="True"> 
+                                <input for="bairro" name="bairro" value="{{ lista_fornecedor.bairro }}" readonly="True"> 
                             </div>
                             
                             <div class="item">        
                                 <label for="cidade" name="cidade"><b>Cidade</b></label>
-                                <input for="cidade" name="cidade" value="{{ fornecedor.cidade }}" readonly="True">
+                                <input for="cidade" name="cidade" value="{{ lista_fornecedor.cidade }}" readonly="True">
                             </div>
                         </div>
 
                         <div class="container-space-around">
                             <div class="item">        
                                 <label for="cep" name="cep"><b>CEP</b></label>
-                                <input for="cep" name="cep" value="{{ fornecedor.cep }}" readonly="True">
+                                <input for="cep" name="cep" value="{{ lista_fornecedor.cep }}" readonly="True">
                             </div>
                             
                             <div class="item">        
                                 <label for="numero" name="numero"><b>Número</b></label>
-                                <input for="numero" name="numero" value="{{ fornecedor.numero }}" readonly="True"> 
+                                <input for="numero" name="numero" value="{{ lista_fornecedor.numero }}" readonly="True"> 
                             </div>
                             
                             <div class="item">        
                                 <label for="complemento" name="complemento"><b>Complemento</b></label>
-                                <input for="complemento" name="complemento" value="{{ fornecedor.complemento }}" readonly="True">  
+                                <input for="complemento" name="complemento" value="{{ lista_fornecedor.complemento }}" readonly="True">  
                             </div>
                         </div>  
 
                         <div class="container-item-form" style="margin-bottom: 10px; margin-left: 5px;">
-                            <a href="{% url 'exclui_fornecedor' fornecedor.id %}">
+                            <a href="{% url 'exclui_fornecedor' lista_fornecedor.id %}">
                                 <button class="btn btn-danger" type="submit">Excluir</button>  
                             </a>             
-                            <a href="{% url 'edita_fornecedor' fornecedor.id %}">
+                            <a href="{% url 'edita_fornecedor' lista_fornecedor.id %}">
                                 <button class="btn btn-warning" type="submit">Editar</button>
                             </a>
                         </div>
@@ -102,6 +102,44 @@
                 </div>
             {% endif %}    
         </div>
+
+        <section class="top-catagory-area section-padding-20-0">
+            <div class="container">
+                {% if lista_fornecedores.has_other_pages %}
+                <ul class="pagination">
+                    {% if lista_fornecedores.has_previous %}
+                        <li class="page-item">
+                            <a href="?page={{ lista_fornecedores.previous_page_number }}" class="page-link">&laquo;</a>
+                        </li>
+                    {% else %}
+                        <li class="page-item disabled">
+                            <a class="page-link">&laquo;</a>
+                        </li>
+                    {% endif %}
+                    {% for pagina in lista_fornecedores.paginator.page_range %}
+                        {% if lista_fornecedores.number == pagina %}
+                            <li class="page-item active">
+                                <a class="page-link">{{ pagina }}</a>
+                            </li>
+                        {% else %}
+                            <li class="page-item">
+                                <a href="?page={{ pagina }}" class="page-link">{{ pagina }}</a>
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+                    {% if lista_fornecedores.has_next %}
+                        <li class="page-item">
+                            <a href="?page={{ lista_fornecedores.netx_page_number }}" class="page-link">&raquo;</a>
+                        </li>
+                    {% else %}
+                        <li class="page-item disabled">
+                            <a class="page-link">&raquo;</a>
+                        </li>
+                    {% endif %}
+                </ul>
+                {% endif %}
+            </div>
+        </section>
     </div>        
 </section>
 {% endif %}
