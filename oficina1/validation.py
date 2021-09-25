@@ -24,14 +24,14 @@ def campo_contem_simbolos(valor_campo, nome_campo, lista_de_erros):
             break
 
 def cadastro_existente(nome_campo, campo_valor, lista_de_erros):
-    fornecedor = Fornecedor.objects.filter(cnpj=campo_valor).exists()
+    fornecedor = Fornecedor.objects.filter(cnpj=campo_valor)
 
     if nome_campo == 'codigo':
         nome_auxiliar = 'Código do relatório'
     else:
         nome_auxiliar = nome_campo.capitalize()
 
-    if fornecedor is not None:
+    if fornecedor.count() != 0:
         lista_de_erros[nome_campo] = f'{nome_auxiliar} já existe.'
 
 def caneta_existente(nome_campo, campo_modelo, campo_cor, campo_ponta, lista_de_erros):
