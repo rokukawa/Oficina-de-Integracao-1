@@ -22,7 +22,7 @@ def cadastro_fornecedor(request):
 
 
 def lista_fornecedores(request):
-    fornecedores = Fornecedor.objects.all()
+    fornecedores = Fornecedor.objects.all().order_by('nome_fornecedor')
 
     search = request.GET.get('search')
     if search:

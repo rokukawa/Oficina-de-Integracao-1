@@ -48,7 +48,7 @@ def cadastro_relatorio(request):
 
 
 def lista_canetas(request):
-    canetas = Caneta.objects.all()
+    canetas = Caneta.objects.all().order_by('modelo')
     
     search = request.GET.get('search')
     if search:
@@ -65,7 +65,7 @@ def lista_canetas(request):
 
 
 def lista_lote(request):
-    lote = Lote.objects.all()
+    lote = Lote.objects.all().order_by('codigo_maquina')
 
     search = request.GET.get('search')
     if search:
@@ -82,7 +82,7 @@ def lista_lote(request):
 
 
 def lista_relatorio(request):
-    relatorios = Relatorio.objects.all()
+    relatorios = Relatorio.objects.all().order_by('codigo')
 
     search = request.GET.get('search')
     if search:

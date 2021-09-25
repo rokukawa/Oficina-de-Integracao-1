@@ -15,7 +15,7 @@ class FornecedorForms(forms.ModelForm):
             'comercial': forms.TextInput(attrs={'class': 'item', 'max_length':100, 'placeholder':'Informe o telefone comercial', 'data-mask':"(00) 00000-0000"}),
             'residencial': forms.TextInput(attrs={'class': 'item', 'max_length':100, 'placeholder':'Informe o telefone residencial', 'data-mask':"(00) 00000-0000"}),
             'rua': forms.TextInput(attrs={'class': 'item', 'max_length':100, 'placeholder':'Informe o nome da rua'}),
-            'numero': forms.TextInput(attrs={'class': 'item', 'max_length':45, 'placeholder':'Informe o número'}),
+            'numero': forms.TextInput(attrs={'class': 'item', 'max_length':45, 'placeholder':'Informe o número','data-mask':"000000"}),
             'cidade': forms.TextInput(attrs={'class': 'item', 'max_length':100, 'placeholder':'Informe a cidade'}),
             'cep': forms.TextInput(attrs={'class': 'item', 'max_length':100, 'placeholder':'Informe o CEP', 'data-mask':"00000-000"}),
             'bairro': forms.TextInput(attrs={'class': 'item', 'max_length':100, 'placeholder':'Informe o nome do bairro'}),
@@ -54,6 +54,13 @@ class FornecedorForms(forms.ModelForm):
         campo_contem_simbolos(bairro, 'bairro', lista_de_erros)
         campo_contem_simbolos(complemento, 'complemento', lista_de_erros)
 
+        cadastro_existente('cnpj', cnpj, lista_de_erros)
+
+        remove_espaço(nome_fornecedor)
+        remove_espaço(rua)
+        remove_espaço(bairro)
+        remove_espaço(cidade)
+        remove_espaço(complemento)
 
         if lista_de_erros is not None:
             for erro in lista_de_erros:

@@ -17,15 +17,20 @@ class CanetaForms(forms.ModelForm):
 
     def clean(self):
         lista_de_erros = {}
-        cor = self.cleaned_data.get('cor')
         modelo = self.cleaned_data.get('modelo')
+        cor = self.cleaned_data.get('cor')
         ponta = self.cleaned_data.get('ponta')
 
         campo_contem_numero(cor, 'cor', lista_de_erros)
-
         campo_contem_simbolos(cor, 'cor', lista_de_erros)
         campo_contem_simbolos(modelo, 'modelo', lista_de_erros)
         campo_contem_simbolos(ponta, 'ponta', lista_de_erros)
+
+        caneta_existente('modelo', modelo, cor, ponta, lista_de_erros)
+
+        remove_espaço(modelo)
+        remove_espaço(cor)
+        remove_espaço(ponta)
         
         if lista_de_erros is not None:
             for erro in lista_de_erros:
@@ -53,6 +58,8 @@ class LoteForms(forms.ModelForm):
 
         campo_contem_simbolos(codigo_maquina, 'codigo_maquina', lista_de_erros)
 
+        remove_espaço(codigo_maquina)
+
         if lista_de_erros is not None:
             for erro in lista_de_erros:
                 mensagem_erro = lista_de_erros[erro]
@@ -78,6 +85,10 @@ class RelatorioForms(forms.ModelForm):
         codigo_relatorio = self.cleaned_data.get('codigo')
 
         campo_contem_simbolos(codigo_relatorio, 'codigo', lista_de_erros)
+        
+        cadastro_existente('codigo', codigo_relatorio, lista_de_erros)
+
+        remove_espaço(codigo_relatorio)
 
         if lista_de_erros is not None:
             for erro in lista_de_erros:
