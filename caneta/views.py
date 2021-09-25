@@ -33,6 +33,20 @@ def cadastro_lote(request):
         return render(request, 'cadastrar/cadastro_lote.html', contexto)
 
 
+def cadastro_relatorio(request):
+    relatorio_form = RelatorioForms(request.POST or None)
+    contexto = {'relatorio_form': relatorio_form} 
+    
+    if request.method == 'POST':
+        if relatorio_form.is_valid():
+            relatorio_form.save()
+            return redirect('lista_relatorio')
+        else:
+            return render(request, 'cadastrar/cadastro_relatorio.html', contexto)
+    else:
+        return render(request, 'cadastrar/cadastro_relatorio.html', contexto)
+
+
 def lista_canetas(request):
     canetas = Caneta.objects.all()
 
@@ -59,21 +73,7 @@ def lista_lote(request):
     return render(request, 'listar/lista_lote.html', contexto)
 
 
-def gerar_relatorio(request):
-    relatorio_form = RelatorioForms(request.POST or None)
-    contexto = {'relatorio_form': relatorio_form}
-    
-    if request.method == 'POST':
-        if relatorio_form.is_valid():
-            relatorio_form.save()
-            return redirect('lista_relatorio')
-        else:
-            return render(request, 'cadastrar/cadastro_relatorio.html', contexto)
-    else:
-        return render(request, 'cadastrar/cadastro_relatorio.html', contexto)
-
-
-def listar_relatorio(request):
+def lista_relatorio(request):
     relatorios = Relatorio.objects.all()
 
     paginator = Paginator(relatorios, 2)
@@ -89,26 +89,37 @@ def listar_relatorio(request):
 def exclui_caneta(request, caneta_id):
     caneta = Caneta.objects.filter(pk=caneta_id)
     caneta.delete()
-    return redirect('dashboard')
+    return redirect('lista_canetas')
 
 
 def exclui_lote(request, lote_id):
     lote = Lote.objects.filter(pk=lote_id)
     lote.delete()
-    return redirect('dashboard')
+    return redirect('lista_lote')
 
 
 def exclui_relatorio(request, relatorio_id):
     relatorio = Relatorio.objects.filter(pk=relatorio_id)
     relatorio.delete()
-    return redirect('dashboard')
-
+    return redirect('lista_relatorio')
 
 
 def edita_caneta(request, caneta_id):
     edita_caneta = Caneta.objects.filter(pk=caneta_id)
     contexto = {'edita_caneta': edita_caneta}
     return render(request, 'editar/edita_caneta.html', contexto)
+
+        
+def edita_lote(request, lote_id):
+    edita_lote = Lote.objects.filter(pk=lote_id)
+    contexto = {'edita_lote': edita_lote}
+    return render(request, 'editar/edita_lote.html', contexto)
+
+
+def edita_relatorio(request, relatorio_id):
+    edita_relatorio = Relatorio.objects.filter(pk=relatorio_id)
+    contexto = {'edita_relatorio': edita_relatorio}
+    return render(request, 'editar/edita_relatorio.html', contexto)
 
 
 def atualiza_caneta(request):
@@ -120,12 +131,6 @@ def atualiza_caneta(request):
         c.ponta = request.POST['ponta']
         c.save()
         return redirect('lista_canetas') 
-
-        
-def edita_lote(request, lote_id):
-    edita_lote = Lote.objects.filter(pk=lote_id)
-    contexto = {'edita_lote': edita_lote}
-    return render(request, 'editar/edita_lote.html', contexto)
 
 
 def atualiza_lote(request):
@@ -139,12 +144,6 @@ def atualiza_lote(request):
         l.Fornecedor = request.POST['fornecedor']
         l.save()
         return redirect('lista_lote') 
-
-        
-def edita_relatorio(request, relatorio_id):
-    edita_relatorio = Relatorio.objects.filter(pk=relatorio_id)
-    contexto = {'edita_relatorio': edita_relatorio}
-    return render(request, 'editar/edita_relatorio.html', contexto)
 
 
 def atualiza_relatorio(request):

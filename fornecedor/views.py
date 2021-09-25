@@ -37,7 +37,7 @@ def lista_fornecedores(request):
 def exclui_fornecedor(request, fornecedor_id):
     fornecedor = Fornecedor.objects.filter(pk=fornecedor_id)
     fornecedor.delete()
-    return redirect('dashboard')
+    return redirect('lista_fornecedores')
 
 
 def edita_fornecedor(request, fornecedor_id):

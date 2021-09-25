@@ -13,7 +13,6 @@
 {% if user.is_authenticated %}
 <section>
     <div class="container">
-        
         <div class="row">
             <div class="col-12">
                 <div class="section-heading" style="margin-top: 15px;">
@@ -72,7 +71,7 @@
         <section class="top-catagory-area section-padding-20-0">
             <div class="container">
                 {% if lista_lote.has_other_pages %}
-                <ul class="pagination">
+                <ul class="pagination justify-content-center">
                     {% if lista_lote.has_previous %}
                         <li class="page-item">
                             <a href="?page={{ lista_lote.previous_page_number }}" class="page-link">&laquo;</a>
