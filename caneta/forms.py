@@ -86,7 +86,7 @@ class RelatorioForms(forms.ModelForm):
 
         campo_contem_simbolos(codigo_relatorio, 'codigo', lista_de_erros)
         
-        cadastro_existente('codigo', codigo_relatorio, lista_de_erros)
+        relatorio_existente('codigo', codigo_relatorio, lista_de_erros)
 
         remove_espaço(codigo_relatorio)
 
