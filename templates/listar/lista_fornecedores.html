@@ -20,6 +20,16 @@
                 </div>
             </div>
         </div>
+
+        <div class="col-sm-12">
+            <form action="{% url 'lista_fornecedores' %}" method="GET" class="form-inline">
+                <div class="input-group">
+                    <input class="form-control" type="text" name="search" placeholder="Pesquisar nome do fornecedor">
+                    <button class="btn btn-dark" type="button">Pesquisar</button>
+                </div>
+            </form>
+        </div>        
+
         <div class="container-item-form">
             {% if lista_fornecedores %}
                 {% for lista_fornecedor in lista_fornecedores %}

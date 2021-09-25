@@ -49,6 +49,10 @@ def cadastro_relatorio(request):
 
 def lista_canetas(request):
     canetas = Caneta.objects.all()
+    
+    search = request.GET.get('search')
+    if search:
+        canetas = canetas.filter(modelo__icontains=search)
 
     paginator = Paginator(canetas, 4)
 
@@ -63,6 +67,10 @@ def lista_canetas(request):
 def lista_lote(request):
     lote = Lote.objects.all()
 
+    search = request.GET.get('search')
+    if search:
+        lote = lote.filter(codigo_maquina__icontains=search)
+
     paginator = Paginator(lote, 3)
 
     page = request.GET.get('page')
@@ -75,6 +83,10 @@ def lista_lote(request):
 
 def lista_relatorio(request):
     relatorios = Relatorio.objects.all()
+
+    search = request.GET.get('search')
+    if search:
+        relatorios = relatorios.filter(codigo__icontains=search)
 
     paginator = Paginator(relatorios, 2)
 

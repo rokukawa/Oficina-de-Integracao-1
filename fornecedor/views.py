@@ -24,6 +24,10 @@ def cadastro_fornecedor(request):
 def lista_fornecedores(request):
     fornecedores = Fornecedor.objects.all()
 
+    search = request.GET.get('search')
+    if search:
+        fornecedores = fornecedores.filter(nome_fornecedor__icontains=search)
+
     paginator = Paginator(fornecedores, 2)
 
     page = request.GET.get('page')

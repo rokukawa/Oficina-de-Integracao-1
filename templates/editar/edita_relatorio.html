@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'home.html' %}
 {% load static %}
 
 {% block title %}
@@ -31,10 +31,10 @@
 
                                 <input type="text" name="relatorio_id" class="form-control" value="{{ relatorio.id }}" hidden>
 
-                                <div class="container-space-around">                                 
+                                <div class="container-space-around">
                                     <div class="item">
-                                        <label for="lote" name="lote"><b>Lote</b></label>
-                                        <input type="text" name="lote" value="{{ relatorio.lote }}" readonly="True" required>          
+                                        <label for="codigo" name="codigo"><b>Código do Relatório</b></label>
+                                        <input type="text" name="codigo" value="{{ relatorio.codigo }}" required>  
                                     </div>
                                 </div>
                                 
@@ -43,10 +43,10 @@
                                         <label for="quantidade_falhas" name="quantidade_falhas"><b>Quantidade de Canetas Falhas</b></label>
                                         <input type="text" name="quantidade_falhas" value="{{ relatorio.quantidade_falhas }}" required>          
                                     </div>
-
+                                 
                                     <div class="item">
-                                        <label for="codigo" name="codigo"><b>Código do Relatório</b></label>
-                                        <input type="text" name="codigo" value="{{ relatorio.codigo }}" required>  
+                                        <label for="lote" name="lote"><b>Lote</b></label>
+                                        <input type="text" name="lote" value="{{ relatorio.lote }}" readonly="True" required>          
                                     </div>
                                 </div>
                                 

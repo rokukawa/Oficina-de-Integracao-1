@@ -20,14 +20,24 @@
                 </div>
             </div>
         </div>
+
+        <div class="col-sm-12">
+            <form action="{% url 'lista_relatorio' %}" method="GET" class="form-inline">
+                <div class="input-group">
+                    <input class="form-control" type="text" name="search" placeholder="Pesquisar código do relatório">
+                    <button class="btn btn-dark" type="button">Pesquisar</button>
+                </div>
+            </form>
+        </div>  
+
         <div class="container-item-form">
             {% if lista_relatorios %}
                 {% for lista_relatorio in lista_relatorios %}
                     <div class="container" style="border-radius: 4px; border: solid 1.5px; border-color: #dee2e6; margin-bottom: 20px;">
                         <div class="container-space-around"> 
-                            <div class="item">
-                                <label for="lote" name="lote"><b>Lote</b></label>
-                                <input for="lote" name="lote" value="{{ lista_relatorio.lote }}" readonly="True">   
+                            <div class="item">        
+                                <label for="codigo" name="codigo"><b>Código Relatório</b></label>
+                                <input for="codigo" name="codigo" value="{{ lista_relatorio.codigo }}" readonly="True">
                             </div>
                         </div>
 
@@ -36,9 +46,10 @@
                                 <label for="quantidade_falhas" name="quantidade_falhas"><b>Quantidade de Canetas Falhas</b></label>
                                 <input for="quantidade_falhas" name="quantidade_falhas" value="{{ lista_relatorio.quantidade_falhas }}" readonly="True"> 
                             </div>
-                            <div class="item">        
-                                <label for="codigo" name="codigo"><b>Código Relatório</b></label>
-                                <input for="codigo" name="codigo" value="{{ lista_relatorio.codigo }}" readonly="True">
+                            
+                            <div class="item">
+                                <label for="lote" name="lote"><b>Lote</b></label>
+                                <input for="lote" name="lote" value="{{ lista_relatorio.lote }}" readonly="True">   
                             </div>
                         </div>
 
