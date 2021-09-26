@@ -11,8 +11,9 @@
 {% include 'partials/_menu.html' %}
 
 {% if user.is_authenticated %}
-<section>
-    <div class="container"> 
+
+<div class="col-lg-9">
+    <div class="container">
         <div class="row">
             <div class="col-12">
                 <div class="section-heading" style="margin-top: 15px;">
@@ -105,7 +106,7 @@
                 {% endif %}
             </div>
         </section>
-    </div>        
-</section>
+    </div>   
+</div>
 {% endif %}
 {% endblock %}

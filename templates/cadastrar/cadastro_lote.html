@@ -11,13 +11,13 @@
 {% include 'partials/_menu.html' %}
 
 {% if user.is_authenticated %}
-    
-    <section>
+
+    <div class="col-lg-9">
         <div class="container">
             <div class="container-item-titulo">
                 <h2>Cadastro Lote</h2>
             </div>
-
+    
             <div class="container-item-form">
                 <form action="{% url 'cadastro_lote' %}" method="POST"> {% csrf_token %}
                     {% for field in lote_form.visible_fields %}
@@ -27,22 +27,22 @@
                             </section>
                         {% endfor %}
                     {% endfor %}
-
+    
                     <div class="item">
                         <label for="codigo_maquina" name="codigo_maquina"><b>Código Máquina</b></label>
                         {{ lote_form.codigo_maquina }}      
                     </div>
-
+    
                     <div class="item">
                         <label for="data_fabricação" name="data_fabricação"><b>Data de Fabricação</b></label>
                         {{ lote_form.data_fabricação }}  
                     </div>
-
+    
                     <div class="item">        
                         <label for="quantidade" name="quantidade"><b>Quantidade de Canetas</b></label>
                         {{ lote_form.quantidade }}   
                     </div>
-
+    
                     <div class="container-space-around">
                         <div class="item">        
                             <label for="caneta" name="caneta"><b>Modelo Caneta</b></label>
@@ -53,7 +53,7 @@
                             {{ lote_form.fornecedor }}   
                         </div>
                     </div>
-
+    
                     <div class="confirmar">
                         <div class="item">
                             <button type="submit" class="btn btn-success">Confirmar Cadastro</button>
@@ -63,8 +63,8 @@
                     </div>
                 </form>
             </div>
-        </div>        
-    </section>
+        </div>
+    </div>      
 
     
     <script>

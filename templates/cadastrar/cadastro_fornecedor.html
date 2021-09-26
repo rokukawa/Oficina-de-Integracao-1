@@ -11,13 +11,13 @@
 {% include 'partials/_menu.html' %}
 
 {% if user.is_authenticated %}
-    
-    <section>
+
+    <div class="col-lg-9">
         <div class="container">
             <div class="container-item-titulo">
                 <h2>Cadastro Fornecedor</h2>
             </div>
-
+    
             <div class="container-item-form">
                 <form action="{% url 'cadastro_fornecedor' %}" method="POST"> {% csrf_token %}
                     {% for field in fornecedor_form.visible_fields %}
@@ -27,17 +27,17 @@
                             </section>
                         {% endfor %}
                     {% endfor %}
-
+    
                     <div class="item">
                         <label for="nome_fornecedor" name="nome_fornecedor"><b>Nome Fornecedor</b></label>
                         {{ fornecedor_form.nome_fornecedor }}      
                     </div>
-
+    
                     <div class="item">
                         <label for="cnpj" name="cnpj"><b>CNPJ</b></label>
                         {{ fornecedor_form.cnpj }}  
                     </div>
-
+    
                     <div class="container-space-around">
                         <div class="item">        
                             <label for="celular" name="celular"><b>Celular</b></label>
@@ -52,7 +52,7 @@
                             {{ fornecedor_form.comercial }}   
                         </div>
                     </div>
-
+    
                     <div class="container-space-around">
                         <div class="item">        
                             <label for="rua" name="rua"><b>Rua</b></label>
@@ -69,7 +69,7 @@
                             {{ fornecedor_form.cidade }}
                         </div>
                     </div>
-
+    
                     <div class="container-space-around">
                         <div class="item">        
                             <label for="cep" nmae="cep"><b>CEP</b></label>
@@ -86,7 +86,7 @@
                             {{ fornecedor_form.complemento }}
                         </div>
                     </div>      
-
+    
                     <div class="confirmar">
                         <div class="item">
                             <button type="submit" class="btn btn-success">Confirmar Cadastro</button>
@@ -94,7 +94,7 @@
                     </div>
                 </form>
             </div>
-        </div>        
-    </section>
+        </div>
+    </div>    
 {% endif %}
 {% endblock %}

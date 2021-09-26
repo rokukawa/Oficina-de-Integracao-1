@@ -11,13 +11,13 @@
 {% include 'partials/_menu.html' %}
 
 {% if user.is_authenticated %}
-    
-    <section>
+
+    <div class="col-lg-9">
         <div class="container">
             <div class="container-item-titulo">
                 <h2>Gerar Relatório</h2>
             </div>
-
+    
             <div class="container-item-form">
                 <form action="{% url 'relatorio' %}" method="POST"> {% csrf_token %}
                     {% for field in relatorio_form.visible_fields %}
@@ -27,7 +27,7 @@
                             </section>
                         {% endfor %}
                     {% endfor %}
-
+    
                     <div class="container-space-around">
                         <div class="item">        
                             <label for="codigo" name="codigo"><b>Código do Relatório</b></label>
@@ -46,7 +46,7 @@
                             {{ relatorio_form.lote }}   
                         </div>
                     </div>
-
+    
                     <div class="confirmar">
                         <div class="item">
                             <button type="submit" class="btn btn-success">Confirmar Relatório</button>
@@ -55,8 +55,8 @@
                     </div>
                 </form>
             </div>
-        </div>        
-    </section>
+        </div>
+    </div>        
 
     <script>
         function exibirCriarLote()

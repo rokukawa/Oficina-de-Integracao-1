@@ -23,4 +23,4 @@ urlpatterns = [
     path('', include('usuario.urls')),
     path('', include('fornecedor.urls')),
     path('', include('caneta.urls'))
-] 
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

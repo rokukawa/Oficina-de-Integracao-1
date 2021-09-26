@@ -11,7 +11,8 @@
 {% include 'partials/_menu.html' %}
 
 {% if user.is_authenticated %}
-<section>
+
+<div class="col-lg-9">
     <div class="container"> 
         <div class="row">
             <div class="col-12">
@@ -150,6 +151,6 @@
             </div>
         </section>
     </div>        
-</section>
+</div>
 {% endif %}
 {% endblock %}
