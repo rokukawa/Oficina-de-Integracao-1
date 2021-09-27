@@ -5,10 +5,7 @@
     Cadastro
 {% endblock %}
 
-
 {% block content%}
-    
-{% include 'partials/_menu.html' %}
 
     <section>
         <div class="container">
@@ -55,11 +52,23 @@
 
                     <div class="confirmar">
                         <div class="item">
-                            <button type="submit" class="btn btn-success">Confirmar Cadastro</button>
+                            <div class="btn-group me-2" role="group" aria-label="Second group">
+                                <button type="submit" class="btn btn-success">Confirmar Cadastro</button>
+                            </div>
+                            <div class="btn-group me-2" role="group" aria-label="Second group">
+                                <button type="button" class="btn btn-primary" onclick="exibirTelaLogin()">Voltar para a tela de Login</button>
+                            </div>
                         </div>
                     </div>
                 </form>
             </div>
         </div>        
     </section>
+
+    <script>
+        function exibirTelaLogin()
+        {
+             location.href = "{% url 'login' %}";
+        } 
+    </script>
 {% endblock %}
