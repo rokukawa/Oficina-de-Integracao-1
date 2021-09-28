@@ -1,7 +1,5 @@
 from fornecedor.views import lista_fornecedores
 from django import forms
-from django.db.models import fields
-from django.forms import widgets
 from caneta.models import *
 from oficina1.validation import *
 
@@ -21,12 +19,16 @@ class CanetaForms(forms.ModelForm):
         cor = self.cleaned_data.get('cor')
         ponta = self.cleaned_data.get('ponta')
 
+        campo_vazio(modelo, 'modelo', lista_de_erros)
+        campo_vazio(cor, 'cor', lista_de_erros)
+        campo_vazio(ponta, 'ponta', lista_de_erros)
+        
         campo_contem_numero(cor, 'cor', lista_de_erros)
         campo_contem_simbolos(cor, 'cor', lista_de_erros)
         campo_contem_simbolos(modelo, 'modelo', lista_de_erros)
         campo_contem_simbolos(ponta, 'ponta', lista_de_erros)
 
-        caneta_existente('modelo', modelo, cor, ponta, lista_de_erros)
+        caneta_existente(modelo, 'modelo', cor, ponta, lista_de_erros)
 
         remove_espaço(modelo)
         remove_espaço(cor)
@@ -56,6 +58,8 @@ class LoteForms(forms.ModelForm):
 
         codigo_maquina = self.cleaned_data.get('codigo_maquina')
 
+        campo_vazio(codigo_maquina, 'codigo_maquina', lista_de_erros)
+
         campo_contem_simbolos(codigo_maquina, 'codigo_maquina', lista_de_erros)
 
         remove_espaço(codigo_maquina)
@@ -84,9 +88,11 @@ class RelatorioForms(forms.ModelForm):
 
         codigo_relatorio = self.cleaned_data.get('codigo')
 
+        campo_vazio(codigo_relatorio, 'codigo', lista_de_erros)
+
         campo_contem_simbolos(codigo_relatorio, 'codigo', lista_de_erros)
         
-        relatorio_existente('codigo', codigo_relatorio, lista_de_erros)
+        relatorio_existente(codigo_relatorio, 'codigo', lista_de_erros)
 
         remove_espaço(codigo_relatorio)
 

@@ -36,6 +36,8 @@ class FornecedorForms(forms.ModelForm):
         bairro = self.cleaned_data.get('bairro')
         complemento = self.cleaned_data.get('complemento')
 
+        campo_vazio(nome_fornecedor, 'nome_fornecedor', lista_de_erros)
+
         campo_contem_numero(nome_fornecedor, 'nome_fornecedor', lista_de_erros)
         campo_contem_numero(rua, 'rua', lista_de_erros)
         campo_contem_numero(cidade, 'cidade', lista_de_erros)
@@ -54,7 +56,7 @@ class FornecedorForms(forms.ModelForm):
         campo_contem_simbolos(bairro, 'bairro', lista_de_erros)
         campo_contem_simbolos(complemento, 'complemento', lista_de_erros)
 
-        fornecedor_existente('cnpj', cnpj, lista_de_erros)
+        fornecedor_existente(cnpj, 'cnpj', lista_de_erros)
 
         remove_espaço(nome_fornecedor)
         remove_espaço(rua)
